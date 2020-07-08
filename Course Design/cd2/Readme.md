@@ -4,13 +4,13 @@
 
 |原图|噪声|
 |:-:|:-:|
-|![swan Original](/img/swanOriginal.bmp)|![swan Noise](/img/swanNoise.bmp)|
+|![swan Original](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/swanOriginal.bmp)|![swan Noise](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/swanNoise.bmp)|
 
 ### 1.1. 分析
 
 1. 观察图像，可发现**脉冲（椒盐）噪声**和周期性噪声 $\rightarrow$ **中值**滤波（$3 \times 3$）
 2. 观察频谱图，可发现图中的**单像素**亮点 $\rightarrow$ **陷波**滤波（$1 \times 1$ 理想）
-    ![swan FFT](/img/swanFFT.png)
+    ![swan FFT](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/swanFFT.png)
 3. 顺序设计
    - 先中值后陷波 x
         会使频谱图的单像素噪声变化（向周围扩散），陷波不好去除
@@ -73,28 +73,28 @@
 
 |原图|噪声|去噪|
 |:-:|:-:|:-:|
-|![swan Original](/img/swanOriginal.bmp)|![swan Noise](/img/swanNoise.bmp)|![swan Result](/img/swanResult.png)|
+|![swan Original](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/swanOriginal.bmp)|![swan Noise](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/swanNoise.bmp)|![swan Result](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/swanResult.png)|
 
 与原图的均方误差（MSE），两种顺序的比较
 
-![swan MSE](/img/swanMSE.png)
+![swan MSE](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/swanMSE.png)
 
 ## 2. 狗
 
 |原图|噪声|
 |:-:|:-:|
-|![dog Original](/img/dogOriginal.bmp)|![dog Noise](/img/dogDistorted.bmp)|
+|![dog Original](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/dogOriginal.bmp)|![dog Noise](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/dogDistorted.bmp)|
 
 ### 2.1. 分析
 
 1. 观察图像，可发现某种随机噪声和**周期性噪声**
 2. 观察**局部直方图**（我选的是桶的部分，基本只有黑色），基本可以确定随机噪声是**高斯噪声**
 3. 观察频谱图，可发现图中的亮块 $\rightarrow$ **陷波**滤波（范围较大）
-    ![dog FFT](/img/dogFFT.png)
+    ![dog FFT](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/dogFFT.png)
 4. 陷波设计
     每个亮块用巴特沃斯高通，然后再加线条
     it ~~sounds stupid but~~ works
-    ![dog Notch](/img/dogNotch.png)
+    ![dog Notch](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/dogNotch.png)
 5. 空域的高斯噪声密集，可以采用**快速非局部均值（Fast NonLocal Means, Fast NLM）**
    **快速**是因为普通的 NLM 太太太太太慢了
    自适应中值也许可以，但是没试过
@@ -239,11 +239,11 @@
 
 |陷波|Fast NLM|灰度变换|
 |:-:|:-:|:-:|
-|![dog Result](/img/dogResult1.png)|![dog Result](/img/dogResult2.png)|![dog Result](/img/dogResult3.png)|
+|![dog Result](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/dogResult1.png)|![dog Result](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/dogResult2.png)|![dog Result](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/dogResult3.png)|
 
 与原图的均方误差（MSE），各个步骤
 
-![dog MSE](/img/dogMSE.png)
+![dog MSE](https://github.com/sbwww/Course-Digital-Image-Processing/raw/master/Course Design/cd2/img/dogMSE.png)
 
 一开始做完 NLM，看到 MSE 将近 1900，以为方法有问题，但是视觉效果还不错，于是觉得可能是去噪后**整体灰度**有问题
 天鹅图去噪完的 MSE 是 200 多，狗这个效果没有天鹅好，但也不会差太多，大概估计一下 $$1900-300=1600=40^2$$ 所以在灰度变换的时候 -40，当然这个数字可以设置地更精确，但是没这个必要
